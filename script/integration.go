@@ -111,7 +111,7 @@ func sendTestOutput(output chan string, testname string, buf *bytes.Buffer, err 
 		if debugging {
 			fmt.Printf("Error on %s: %s\n", basetestname, err)
 		}
-		panic("ERROR: " + basetestname)
+		panic("ERROR: " + basetestname + "\n" + buf.String() + "\n" + err.Error())
 		erroring = true
 		output <- fmt.Sprintf("error: %s => %s\n%s", basetestname, err, cli)
 	}
