@@ -85,6 +85,9 @@ func unlockAbortIfFileModified(path string) {
 	modified, err := git.IsFileModified(path)
 
 	if err != nil {
+		if err == os.ErrNotExist {
+			return
+		}
 		Exit(err.Error())
 	}
 

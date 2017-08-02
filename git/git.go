@@ -1274,6 +1274,9 @@ func IsFileModified(filepath string) (bool, error) {
 		}
 	}
 	if err := cmd.Wait(); err != nil {
+		if _, serr := os.Stat(filepath); os.IsNotExist(serr) {
+			return false, os.ErrNotExist
+		}
 		return false, lfserrors.Wrap(err, "Git status failed")
 	}
 
