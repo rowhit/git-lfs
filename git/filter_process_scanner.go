@@ -111,7 +111,7 @@ func (o *FilterProcessScanner) NegotiateCapabilities() ([]string, error) {
 		}
 	}
 
-	err = o.pl.writePacketList(reqCaps)
+	err = o.pl.writePacketList(append(reqCaps, "capability=delay"))
 	if err != nil {
 		return nil, fmt.Errorf("writing filter-process capabilities failed with %s", err)
 	}
