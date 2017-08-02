@@ -8,6 +8,8 @@ SHOW_LOGS=yes
 
 atexit() {
   res=${1:-$?}
+  set -x
+  echo "res: $res"
   SHUTDOWN_LFS=yes
   if [ "$res" = "0" ]; then
     SHOW_LOGS=no
