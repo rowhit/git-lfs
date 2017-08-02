@@ -189,7 +189,7 @@ refute_server_lock() {
 
   grep "200 OK" http.log
 
-  [ $(grep -c "$id" http.json) -eq 0 ]
+  [ $(grep -c "$id" http.json) -eq 0 ] || ( cat http.json; exit 1 )
 }
 
 # Assert that .gitattributes contains a given attribute N times
